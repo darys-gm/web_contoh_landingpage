@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Nusantara - Kelezatan Autentik di Setiap Gigitan</title>
+    
+    <!-- Link ke Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- ==================== CSS INTERNAL ==================== -->
+    <style>
+        /* --- VARIABEL WARNA & FONT --- */
+        :root {
+            --primary-color: #c0392b;
+            --secondary-color: #e67e22;
+            --text-color: #333;
+            --bg-color: #fdf6f0;
+            --white-color: #ffffff;
+            --font-heading: 'Lobster', cursive;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        /* --- RESET & DASAR --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        /* --- HEADER & NAVIGASI --- */
+        .header {
+            background: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger {
+            display: none; /* Disembunyikan di desktop */
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://picsum.photos/seed/hero/1920/1080.jpg') no-repeat center center/cover;
+            height: 100vh;
+            color: var(--white-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        /* --- TENTANG KAMI --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-content img {
+            flex: 1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%; /* Pastikan gambar tidak melebar */
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- MENU --- */
+        .section-menu {
+            background-color: var(--white-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Minmax sedikit lebih lebar */
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: var(--bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin: 15px 0 5px;
+            color: var(--primary-color);
+        }
+
+        .menu-item .price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- TESTIMONI --- */
+        .section-testimonial {
+            background-color: var(--bg-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-item {
+            background: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            font-style: italic;
+        }
+
+        .testimonial-item p {
+            margin-bottom: 20px;
+        }
+
+        .testimonial-item cite {
+            display: block;
+            text-align: right;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-style: normal;
+        }
+
+        /* --- KONTAK --- */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--text-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--white-color);
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+
+        /* ==================== RESPONSIVE UNTUK MOBILE ==================== */
+        @media (max-width: 768px) {
+            
+            /* --- Navigasi --- */
+            .hamburger {
+                display: flex; /* Tampilkan hamburger menu */
+            }
+
+            .nav-list {
+                position: fixed;
+                left: -100%; /* Sembunyikan di luar layar */
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 20px 0;
+            }
+
+            .nav-list.active {
+                left: 0; /* Tampilkan saat aktif */
+            }
+
+            /* --- Typografi & Spasi Umum --- */
+            .section {
+                padding: 40px 0; /* Kurangi padding section */
+            }
+            .section-title {
+                font-size: 2rem; /* Ukuran judul lebih kecil */
+            }
+
+            /* --- Hero Section --- */
+            .hero-content h1 {
+                font-size: 2.5rem; /* Judul hero lebih kecil */
+            }
+            .hero-content p {
+                font-size: 1rem; /* Paragraf hero lebih kecil */
+            }
+
+            /* --- Tentang Kami --- */
+            .about-content {
+                flex-direction: column; /* Susun vertikal */
+                gap: 20px;
+            }
+            .about-content img {
+                order: 2; /* Gambar di bawah */
+            }
+            .about-text {
+                order: 1; /* Teks di atas */
+            }
+            .about-text h3 {
+                font-size: 1.5rem; /* Judul tentang lebih kecil */
+            }
+
+            /* --- Menu & Testimoni Grid --- */
+            .menu-grid, .testimonial-grid {
+                grid-template-columns: 1fr; /* Paksa 1 kolom */
+                gap: 20px;
+            }
+
+            /* --- Kontak --- */
+            .contact-content {
+                grid-template-columns: 1fr; /* Susun vertikal */
+                gap: 30px;
+            }
+            .contact-info h3 {
+                font-size: 1.5rem; /* Judul kontak lebih kecil */
+            }
+
+            /* --- Footer --- */
+            .footer .container {
+                flex-direction: column; /* Susun vertikal */
+                gap: 15px;
+            }
+        }
+        /* ==================== AKHIR DARI RESPONSIVE ==================== */
+
+    </style>
+    <!-- ==================== AKHIR DARI CSS ==================== -->
+
+</head>
+<body>
+
+    <!-- Header & Navigasi -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Warung Nusantara</a>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="beranda" class="hero">
+            <div class="hero-content">
+                <h1>Nikmati Kelezatan Autentik</h1>
+                <p>Rasakan sensasi kuliner Nusantara yang kaya akan rempah dan dibuat dengan penuh cinta. Dari dapur kami, langsung ke hati Anda.</p>
+                <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+            </div>
+        </section>
+
+        <!-- Tentang Kami Section -->
+        <section id="tentang" class="section">
+            <div class="container">
+                <h2 class="section-title">Tentang Kami</h2>
+                <div class="about-content">
+                    <img src="https://picsum.photos/seed/aboutus/500/400.jpg" alt="Tentang Warung Nusantara">
+                    <div class="about-text">
+                        <h3>Contoh Website</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="section section-menu">
+            <div class="container">
+                <h2 class="section-title">Menu Unggulan Kami</h2>
+                <div class="menu-grid">
+                    <!-- Menu Item 1 -->
+                    <div class="menu-item">
+                        <img src="https://picsum.photos/seed/rendang/300/300.jpg" alt="Rendang">
+                        <h4>Rendang Padang</h4>
+                        <p>Daging empuk bumbu rendang khas Padang yang kaya rempah.</p>
+                        <span class="price">Rp 35.000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak Section -->
+        <section id="kontak" class="section">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Temui Kami</h3>
+                        <p><strong>Alamat:</strong> Jl. Kuliner No. 12, Jakarta Pusat</p>
+                        <p><strong>Telepon:</strong> <a href="tel:+628123456789">+62 812-3456-789</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:info@warungnusantara.com">info@warungnusantara.com</a></p>
+                        <a href="https://maps.google.com/?q=Jakarta+Pusat" target="_blank" class="btn btn-secondary">Lihat di Peta</a>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Nama Lengkap" required>
+                        <input type="email" placeholder="Email Anda" required>
+                        <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; Desain,Link Social,Dokumentasi dan Tema bisa di custom.</p>
+            <div class="social-links">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT INTERNAL ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navList = document.querySelector('.nav-list');
+
+            hamburger.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-list a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                });
+            });
+        });
+    </script>
+    <!-- ==================== AKHIR DARI JAVASCRIPT ==================== -->
+
+</body>
+</html>
